@@ -9,7 +9,7 @@
 #import "MKActionSheet.h"
 #import "MKActionSheetAdd.h"
 #import "MKASRootViewController.h"
-#import "UIButton+WebCache.h"
+#import <UIButton+YYWebImage.h>
 #import "Masonry.h"
 
 #define MKAS_WINDOW_LEVEL               UIWindowLevelStatusBar - 1
@@ -592,7 +592,7 @@
                     }else if ([imageValue isKindOfClass:[NSURL class]]){
                         url = imageValue;
                     }
-                    [btn sd_setImageWithURL:url forState:UIControlStateNormal placeholderImage:self.placeholderImage];
+                    [btn yy_setImageWithURL:url forState:UIControlStateNormal placeholder:self.placeholderImage];
                 }
             }
         }
@@ -753,13 +753,6 @@
     [super updateConstraints];
 }
 
-
-
-
-
-
-
-
 #pragma mark - ***** lazy ******
 - (UIWindow *)bgWindow{
     if (!_bgWindow) {
@@ -899,7 +892,7 @@
     return _cancelSeparatorView;
 }
 
-- (UILabel *)labCancel{
+- (UILabel *)labCancel {
     if (!_labCancel) {
         _labCancel = [[UILabel alloc] init];
         _labCancel.text = self.cancelTitle;
@@ -911,27 +904,26 @@
 }
 
 
-- (NSMutableArray *)buttonViewsArray{
+- (NSMutableArray *)buttonViewsArray {
     if (!_buttonViewsArray) {
         _buttonViewsArray = @[].mutableCopy;
     }
     return _buttonViewsArray;
 }
 
-- (NSMutableArray *)buttonTitles{
+- (NSMutableArray *)buttonTitles {
     if (!_buttonTitles) {
         _buttonTitles = @[].mutableCopy;
     }
     return _buttonTitles;
 }
 
-- (NSMutableArray *)objArray{
+- (NSMutableArray *)objArray {
     if (!_objArray) {
         _objArray = @[].mutableCopy;
     }
     return _objArray;
 }
+
 @end
-
-
 

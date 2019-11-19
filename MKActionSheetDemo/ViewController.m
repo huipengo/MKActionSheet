@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "MKActionSheet.h"
 #import "InfoModel.h"
-#import "UIButton+WebCache.h"
-#import "UIImageView+WebCache.h"
 #import "MKActionSheetAdd.h"
 #import "UIView+Toast.h"
 #import "Masonry.h"
@@ -60,7 +58,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"img_bg"]];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
@@ -106,7 +103,6 @@
 - (void)initTableViewDatas{
 
     [self.sectionTitleArray removeAllObjects];
-    [self.sectionTitleArray addObject:@"change bg image"];
     [self.sectionTitleArray addObject:@"3 selectType type default UI"];
     [self.sectionTitleArray addObject:@"3 selectType type have icon"];
     [self.sectionTitleArray addObject:@"Portrait and Landscape config"];
@@ -114,14 +110,6 @@
     [self.sectionTitleArray addObject:@"custom titleView & UI"];
 
     [self.datasArray removeAllObjects];
-    
-    NSMutableArray *section0 = @[].mutableCopy;
-    {
-        MKCellModel *model = [[MKCellModel alloc] init];
-        model.title = @"change tableViewBackground image";
-        [section0 addObject:model];
-        [self.datasArray addObject:section0];
-    }
     
     NSMutableArray *section1 = @[].mutableCopy;
     {
@@ -400,9 +388,6 @@
             }
         }];
     }
-
-    
-
     
     else if ([cellTitle isEqualToString:@"custom title View"]){
         MKActionSheet *sheet = [[MKActionSheet alloc] initWithTitle:nil buttonTitleArray:@[@"button1", @"button2",@"button3",@"button4"]];
@@ -471,14 +456,6 @@
         [sheet showWithBlock:^(MKActionSheet *actionSheet, NSInteger buttonIndex) {
             NSLog(@"buttonIndex:%ld",(long)buttonIndex);
         }];
-    }
-
-    else if ([cellTitle isEqualToString:@"change tableViewBackground image"]) {
-        if (self.tableView.backgroundView) {
-            self.tableView.backgroundView = nil;
-        }else{
-            self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"img_bg"]];
-        }
     }
 }
 

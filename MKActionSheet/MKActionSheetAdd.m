@@ -10,11 +10,12 @@
 #import <objc/runtime.h>
 
 @implementation NSObject (MKASAdditions)
-- (void)setMkas_selected:(BOOL)mkas_selected{
+
+- (void)setMkas_selected:(BOOL)mkas_selected {
     objc_setAssociatedObject(self, @selector(mkas_selected), @(mkas_selected), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)mkas_selected{
+- (BOOL)mkas_selected {
     NSNumber *selected = objc_getAssociatedObject(self, @selector(mkas_selected));
     return [selected boolValue];
 }
@@ -32,4 +33,5 @@
     UIGraphicsEndImageContext();
     return image;
 }
+
 @end

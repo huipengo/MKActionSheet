@@ -6,12 +6,12 @@ Pod::Spec.new do |s|
   s.license           = "MIT"
   s.author            = { "MK Xiao" => "xiaomk7758@sina.com" }
   s.social_media_url  = "https://mk2016.github.io"
-  s.platform          = :ios, "8.0"
+  s.platform          = :ios, "9.0"
   s.source            = { :git => "https://github.com/mk2016/MKActionSheet.git", :tag => s.version }
   s.source_files      = "MKActionSheet/**/*.{h,m}"
   s.resource          = "MKActionSheet/MKActionSheet.bundle"
   s.requires_arc      = true
   s.dependency        "Masonry", '~> 1.1.0'
-  s.dependency        "SDWebImage", '~> 5.0.6'
+  s.dependency        "YYWebImage", '~> 1.0.5'
 
 end
