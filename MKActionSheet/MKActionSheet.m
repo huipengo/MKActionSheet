@@ -56,8 +56,8 @@
 @property (nonatomic, assign) BOOL initSuccess;
 
 @property (nonatomic, assign) CGFloat iPhoneXIgnoreBottomH;
-@end
 
+@end
 
 @implementation MKActionSheet
 
@@ -133,7 +133,7 @@
 }
 
 /** init data */
-- (void)initData{
+- (void)initData {
     _iPhoneXIgnoreBottomH = MK_IS_IPHONE_XX ? 34 : 0;
     _windowLevel = MKAS_WINDOW_LEVEL;
     _enabledForBgTap = YES;
@@ -162,35 +162,16 @@
     _multiselectConfirmButtonTitle = @"确定";
     _multiselectConfirmButtonTitleColor = MK_COLOR_RGBA(100.0f, 100.0f, 100.0f, 1.0f);
 
-
     //以 object array 初始化，默认没有取消按钮
     if (_paramIsObject) {
         self.needCancelButton = NO;
     }
     
     // 根据 selectType 和 方向 初始化默认样式
-    if (self.portraitConfig == nil) {
-        self.portraitConfig = [[MKASOrientationConfig alloc] init];
-        if (_selectType == MKActionSheetSelectType_multiselect || _selectType == MKActionSheetSelectType_selected) {       //多选 样式， title 默认 居左对齐，无取消按钮
-            self.portraitConfig.titleAlignment = NSTextAlignmentLeft;
-            self.portraitConfig.buttonTitleAlignment = MKActionSheetButtonTitleAlignment_left;
-            self.portraitConfig.maxShowButtonCount = 5.6;
-        }
-    }
-    
-    if (self.landscapeConfig == nil) {
-        self.landscapeConfig = [[MKASOrientationConfig alloc] init];
-        if (_selectType == MKActionSheetSelectType_multiselect || _selectType == MKActionSheetSelectType_selected) {       //多选 样式， title 默认 居左对齐，无取消按钮
-            self.landscapeConfig.titleAlignment = NSTextAlignmentCenter;
-            self.landscapeConfig.buttonTitleAlignment = MKActionSheetButtonTitleAlignment_center;
-            self.landscapeConfig.maxShowButtonCount = 4.6;
-        }
-    }
-   
     [self updateConfigByOrientation];
 }
 
-- (void)updateConfigByOrientation{
+- (void)updateConfigByOrientation {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     self.currentConfig = self.portraitConfig;
     CGFloat curScreenH = MK_SCREEN_HEIGHT;
@@ -923,6 +904,40 @@
         _objArray = @[].mutableCopy;
     }
     return _objArray;
+}
+
+- (MKASOrientationConfig *)portraitConfig {
+    if (_portraitConfig == nil) {
+        _portraitConfig = [[MKASOrientationConfig alloc] init];
+        if (_selectType == MKActionSheetSelectType_multiselect || _selectType == MKActionSheetSelectType_selected) {       //多选 样式， title 默认 居左对齐，无取消按钮
+            _portraitConfig.titleAlignment = NSTextAlignmentLeft;
+            _portraitConfig.buttonTitleAlignment = MKActionSheetButtonTitleAlignment_left;
+            _portraitConfig.maxShowButtonCount = 5.6;
+        }
+    }
+    return _portraitConfig;
+}
+
+- (void)setPortraitConfig:(MKASOrientationConfig *)portraitConfig {
+    _portraitConfig = portraitConfig;
+    [self updateConfigByOrientation];
+}
+
+- (MKASOrientationConfig *)landscapeConfig {
+    if (_landscapeConfig == nil) {
+        _landscapeConfig = [[MKASOrientationConfig alloc] init];
+        if (_selectType == MKActionSheetSelectType_multiselect || _selectType == MKActionSheetSelectType_selected) {       //多选 样式， title 默认 居左对齐，无取消按钮
+            _landscapeConfig.titleAlignment = NSTextAlignmentCenter;
+            _landscapeConfig.buttonTitleAlignment = MKActionSheetButtonTitleAlignment_center;
+            _landscapeConfig.maxShowButtonCount = 4.6;
+        }
+    }
+    return _landscapeConfig;
+}
+
+- (void)setLandscapeConfig:(MKASOrientationConfig *)landscapeConfig {
+    _landscapeConfig = landscapeConfig;
+    [self updateConfigByOrientation];
 }
 
 @end

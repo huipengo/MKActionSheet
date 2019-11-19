@@ -44,6 +44,10 @@ typedef void(^MKActionSheetCustomTitleViewLayoutBlock)(MASConstraintMaker *make,
 
 #pragma mark - ***** MKActionSheet ******
 @interface MKActionSheet : UIView
+{
+    MKASOrientationConfig *_portraitConfig;    /*!< 竖屏 配置 */
+    MKASOrientationConfig *_landscapeConfig;   /*!< 横屏 配置 */
+}
 
 /** block */
 @property (nonatomic, copy) MKActionSheetBlock block;                                   /*!< callback for click button  */
